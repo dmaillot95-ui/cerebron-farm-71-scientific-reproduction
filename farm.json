@@ -1,0 +1,20 @@
+{
+  "farm_id": 71,
+  "name": "cerebron-farm-71-scientific-reproduction",
+  "domain": "scientific-reproduction",
+  "status": "SCAFFOLDED",
+  "protocol": "SPIRALIX-OMEGA",
+  "capabilities": [
+    "scientific-reproduction",
+    "independent-replication",
+    "dependency-audit"
+  ],
+  "evidence_ceiling": "E2-before-independent-reproduction",
+  "kernel": "dmaillot95-ui/cerebron-omega-ai",
+  "rules": [
+    "SHARED_DEPENDENCY!=INDEPENDENT_EVIDENCE",
+    "REPLICATION_REQUIRES_PROVENANCE",
+    "CONSENSUS!=TRUTH",
+    "CLAIM<=EVIDENCE"
+  ]
+}
