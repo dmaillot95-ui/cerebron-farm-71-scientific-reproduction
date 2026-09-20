@@ -19,6 +19,35 @@ jobs:
         run: |
           mkdir -p .agora-state
           if [ -f agora/state.json ]; then cp agora/state.json .agora-state/state.json; fi
+      - name: Reproduce AVP-0001 independently
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, urllib.request, pathlib
+          url="https://raw.githubusercontent.com/dmaillot95-ui/cerebron-omega-ai/main/config/farms.json"
+          with urllib.request.urlopen(url, timeout=20) as r:
+              d=json.load(r)
+          farms=d["farms"]
+          ids=[f["id"] for f in farms]
+          repos=[f["repo"] for f in farms]
+          checks={
+            "json_parsed": True,
+            "count_74": len(farms)==74,
+            "ids_1_to_74": ids==list(range(1,75)),
+            "ids_unique": len(set(ids))==len(ids),
+            "repos_unique": len(set(repos))==len(repos)
+          }
+          result={
+            "packet_id":"AVP-0001",
+            "method":"independent recomputation from config/farms.json; E2 workflow result not used",
+            "observations":{"farm_count":len(farms),"first_id":ids[0] if ids else None,"last_id":ids[-1] if ids else None},
+            "checks":checks,
+            "reproduction":"PASS" if all(checks.values()) else "FAIL"
+          }
+          pathlib.Path(".agora-state").mkdir(exist_ok=True)
+          pathlib.Path(".agora-state/reproduction.json").write_text(json.dumps(result,indent=2))
+          print(json.dumps(result,indent=2))
+          PY
       - name: Build STATE(t+1)
         shell: bash
         run: |
@@ -27,7 +56,8 @@ jobs:
           p=".agora-state/state.json"
           try: parent=json.load(open(p))
           except Exception: parent={}
-          state={"schema":"AGORA_RECURSIVE_STATE_V2","state_id":os.environ["GITHUB_REPOSITORY"]+":"+os.environ["GITHUB_RUN_ID"],"parent_state_id":parent.get("state_id","GENESIS"),"iteration":int(parent.get("iteration",0))+1,"resource":os.environ["GITHUB_REPOSITORY"],"residual":parent.get("nextlock","BOOTSTRAP"),"claims":[],"evidence_ids":[],"questions":[],"errors":[],"anti_error_rules":parent.get("anti_error_rules",[]),"audit":"PENDING","red_team":"PENDING","reproduction":"PENDING","reality_gate":"PENDING","ablation":"PENDING","transfer":"PENDING","decision":"HOLD","nextlock":"COLLECT_REAL_OUTPUT","rule":"WORKFLOW_EXECUTION!=LEARNING!=PROOF"}
+          rep=json.load(open(".agora-state/reproduction.json"))
+          state={"schema":"AGORA_RECURSIVE_STATE_V2","state_id":os.environ["GITHUB_REPOSITORY"]+":"+os.environ["GITHUB_RUN_ID"],"parent_state_id":parent.get("state_id","GENESIS"),"iteration":int(parent.get("iteration",0))+1,"resource":os.environ["GITHUB_REPOSITORY"],"residual":parent.get("nextlock","BOOTSTRAP"),"claims":["AVP-0001:C1"],"evidence_ids":["AVP-0001:E1"],"questions":[],"errors":[],"anti_error_rules":parent.get("anti_error_rules",[]),"audit":"PENDING","red_team":"PENDING","reproduction":rep["reproduction"],"reproduction_observations":rep,"reality_gate":"PENDING","ablation":"PENDING","transfer":"PENDING","decision":"HOLD","nextlock":"REALITY_GATE" if rep["reproduction"]=="PASS" else "REPRODUCTION_FAILURE","rule":"WORKFLOW_EXECUTION!=LEARNING!=PROOF"}
           json.dump(state,open(p,"w"),indent=2)
           PY
           mkdir -p agora && cp .agora-state/state.json agora/state.json
@@ -38,10 +68,12 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add agora/state.json
           git diff --cached --quiet && exit 0
-          git commit -m "AGORA recursive state ${GITHUB_RUN_ID}"
+          git commit -m "AGORA F71 reproduction state ${GITHUB_RUN_ID}"
           git push
       - uses: actions/upload-artifact@v4
         with:
           name: recursive-state-${{ github.run_id }}
-          path: agora/state.json
+          path: |
+            agora/state.json
+            .agora-state/reproduction.json
           retention-days: 14
