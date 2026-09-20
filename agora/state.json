@@ -1,22 +1,43 @@
 {
   "schema": "AGORA_RECURSIVE_STATE_V2",
-  "state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35517291252",
-  "parent_state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35516783151",
-  "iteration": 8,
+  "state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35517693189",
+  "parent_state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35517291252",
+  "iteration": 9,
   "resource": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction",
   "residual": "COLLECT_REAL_OUTPUT",
-  "claims": [],
-  "evidence_ids": [],
+  "claims": [
+    "AVP-0001:C1"
+  ],
+  "evidence_ids": [
+    "AVP-0001:E1"
+  ],
   "questions": [],
   "errors": [],
   "anti_error_rules": [],
   "audit": "PENDING",
   "red_team": "PENDING",
-  "reproduction": "PENDING",
+  "reproduction": "PASS",
+  "reproduction_observations": {
+    "packet_id": "AVP-0001",
+    "method": "independent recomputation from config/farms.json; E2 workflow result not used",
+    "observations": {
+      "farm_count": 74,
+      "first_id": 1,
+      "last_id": 74
+    },
+    "checks": {
+      "json_parsed": true,
+      "count_74": true,
+      "ids_1_to_74": true,
+      "ids_unique": true,
+      "repos_unique": true
+    },
+    "reproduction": "PASS"
+  },
   "reality_gate": "PENDING",
   "ablation": "PENDING",
   "transfer": "PENDING",
   "decision": "HOLD",
-  "nextlock": "COLLECT_REAL_OUTPUT",
+  "nextlock": "REALITY_GATE",
   "rule": "WORKFLOW_EXECUTION!=LEARNING!=PROOF"
 }
