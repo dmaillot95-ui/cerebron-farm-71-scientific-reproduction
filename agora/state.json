@@ -1,10 +1,10 @@
 {
   "schema": "AGORA_RECURSIVE_STATE_V2",
-  "state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35748457141",
-  "parent_state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35747164935",
-  "iteration": 264,
+  "state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35749527836",
+  "parent_state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35748457141",
+  "iteration": 265,
   "resource": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction",
-  "residual": "REALITY_GATE",
+  "residual": "REPRODUCTION_FAILURE",
   "claims": [
     "AVP-0001:C1"
   ],
