@@ -1,8 +1,8 @@
 {
   "schema": "AGORA_RECURSIVE_STATE_V2",
-  "state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35841156441",
-  "parent_state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35840029215",
-  "iteration": 356,
+  "state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35842576861",
+  "parent_state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:35841156441",
+  "iteration": 357,
   "resource": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction",
   "residual": "REPRODUCTION_FAILURE",
   "claims": [
@@ -21,9 +21,9 @@
     "packet_id": "AVP-0001",
     "method": "independent recomputation from config/farms.json; E2 workflow result not used",
     "observations": {
-      "farm_count": 122,
+      "farm_count": 144,
       "first_id": 1,
-      "last_id": 122
+      "last_id": 144
     },
     "checks": {
       "json_parsed": true,
