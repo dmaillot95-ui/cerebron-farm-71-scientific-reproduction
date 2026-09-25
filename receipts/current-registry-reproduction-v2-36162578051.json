@@ -1,0 +1,62 @@
+{
+  "schema": "F71_CURRENT_REGISTRY_REPRODUCTION_V2",
+  "farm_id": 71,
+  "status": "PASS",
+  "source": {
+    "repo": "dmaillot95-ui/cerebron-omega-ai",
+    "commit": "9caab262e7190a060818bfe0a17330c1564b7f1a",
+    "path": "config/farms.json"
+  },
+  "source_file_sha256": "84817380c3c5a7ee59668166146a0d49f8cc5ddbdb8448a0dca6c8203543d2f9",
+  "observed": {
+    "registry_version": "2.27",
+    "entry_count": 154,
+    "first_id": 1,
+    "max_registered_id": 174,
+    "max_farms": 174,
+    "farm_ceiling": 174,
+    "missing_ids": [
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172
+    ]
+  },
+  "checks": {
+    "json_parsed": true,
+    "version_v227": true,
+    "entry_count_154": true,
+    "max_registered_id_174": true,
+    "max_farms_174": true,
+    "farm_ceiling_174": true,
+    "ids_unique": true,
+    "repos_unique": true,
+    "sparse_gap_exact_153_to_172": true,
+    "f152_present": true,
+    "f173_present": true,
+    "f174_present": true
+  },
+  "reproduction": "PASS",
+  "independent_method": "Pinned-commit raw registry retrieval and independent structural recomputation in F71 V2; no F72 result trusted.",
+  "global_promotion_release": false,
+  "gold_released": false,
+  "training_released": false,
+  "claim_ceiling": "PINNED_SPARSE_REGISTRY_STRUCTURE_REPRODUCTION_ONLY_NO_GLOBAL_F72_RELEASE",
+  "receipt_sha256": "bb18d86bc0704d7e14803f1dde17dd1b66b0e593aaac2205db9a7e1b636ac16a"
+}
