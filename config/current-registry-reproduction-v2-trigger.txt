@@ -1,0 +1,8 @@
+F71 CURRENT REGISTRY REPRODUCTION V2
+core_repo=dmaillot95-ui/cerebron-omega-ai
+core_commit=9caab262e7190a060818bfe0a17330c1564b7f1a
+registry_version=2.27
+entry_count=154
+max_registered_id=174
+sparse_missing_ids=153-172
+global_release=false
