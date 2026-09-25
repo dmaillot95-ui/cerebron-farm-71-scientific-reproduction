@@ -1,0 +1,28 @@
+{
+  "schema": "F71_CURRENT_REGISTRY_REPRODUCTION_V1",
+  "farm_id": 71,
+  "status": "PASS",
+  "source": {
+    "repo": "dmaillot95-ui/cerebron-omega-ai",
+    "commit": "cd6b614ef27becbbf1a4a008bc38c5d15b280e2a",
+    "path": "config/farms.json"
+  },
+  "source_file_sha256": "d23401747d7426473d095153f5d1e18db36d0d630706796374d55fce24affeba",
+  "observed": {
+    "farm_count": 172,
+    "first_id": 1,
+    "last_id": 172
+  },
+  "checks": {
+    "json_parsed": true,
+    "count_172": true,
+    "ids_1_to_172": true,
+    "ids_unique": true,
+    "repos_unique": true
+  },
+  "reproduction": "PASS",
+  "independent_method": "Pinned-commit recomputation from config/farms.json; no workflow result trusted.",
+  "global_promotion_release": false,
+  "claim_ceiling": "PINNED_CURRENT_REGISTRY_FACT_REPRODUCTION_ONLY_NO_GLOBAL_F72_RELEASE",
+  "receipt_sha256": "406d4b400d2c15f8666a26e01f5dc11df4d0b348920213011e628a7677b47262"
+}
