@@ -1,0 +1,5 @@
+F71 CURRENT REGISTRY REPRODUCTION V1
+source_repo=dmaillot95-ui/cerebron-omega-ai
+source_commit=cd6b614ef27becbbf1a4a008bc38c5d15b280e2a
+expected_count=172
+global_release=false

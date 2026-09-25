@@ -1,0 +1,50 @@
+name: F71 Current Registry Reproduction V1
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'config/current-registry-reproduction-trigger.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Recompute pinned current registry
+        run: python worker/current_registry_reproduction_v1.py
+      - name: Verify no global release
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          d=json.loads(pathlib.Path("artifacts/current_registry_reproduction_v1.json").read_text())
+          assert d["status"]=="PASS"
+          assert d["reproduction"]=="PASS"
+          assert d["observed"]["farm_count"]==172
+          assert d["global_promotion_release"] is False
+          assert all(d["checks"].values())
+          print("F71_CURRENT_REGISTRY_REPRODUCTION=PASS",d["receipt_sha256"])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: f71-current-registry-reproduction-v1
+          path: artifacts/current_registry_reproduction_v1.json
+          if-no-files-found: error
+      - name: Persist receipt
+        run: |
+          mkdir -p receipts
+          cp artifacts/current_registry_reproduction_v1.json receipts/current-registry-reproduction-${{ github.run_id }}.json
+          git config user.name cerebron-bot
+          git config user.email actions@users.noreply.github.com
+          git add receipts/current-registry-reproduction-${{ github.run_id }}.json
+          git diff --cached --quiet && exit 0
+          git commit -m "receipt: F71 current registry reproduction ${{ github.run_id }}"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 5
+          done
+          exit 1
