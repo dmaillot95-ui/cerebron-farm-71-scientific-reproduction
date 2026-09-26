@@ -1,8 +1,8 @@
 {
   "schema": "AGORA_RECURSIVE_STATE_V2",
-  "state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:36210524309",
-  "parent_state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:36210000191",
-  "iteration": 671,
+  "state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:36211311452",
+  "parent_state_id": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction:36210524309",
+  "iteration": 672,
   "resource": "dmaillot95-ui/cerebron-farm-71-scientific-reproduction",
   "residual": "REPRODUCTION_FAILURE",
   "claims": [
